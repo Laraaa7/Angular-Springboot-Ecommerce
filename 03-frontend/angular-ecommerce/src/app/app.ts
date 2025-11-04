@@ -1,0 +1,16 @@
+import { Component, signal } from '@angular/core';
+import { RouterOutlet, RouterLinkWithHref, RouterLink } from '@angular/router';
+import { ProductCategoryMenu } from "./components/product-category-menu/product-category-menu";
+import { Search } from "./components/search/search";
+import { CartStatus } from "./components/cart-status/cart-status";
+
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet, ProductCategoryMenu, Search, CartStatus, RouterLinkWithHref, RouterLink],
+  templateUrl: './app.html',
+  styleUrl: './app.css'
+})
+export class App {
+  protected readonly title = signal('angular-ecommerce');
+}

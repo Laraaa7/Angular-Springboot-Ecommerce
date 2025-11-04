@@ -1,0 +1,5 @@
+@for (tempProduct of products; track $index) {
+  <p>
+    {{ tempProduct.name }}: {{ tempProduct.unitPrice | currency:'USD' }}
+  </p>
+}

@@ -1,0 +1,14 @@
+<div class="menu-sidebar-content js-scrollbar1">
+    <nav class="navbar-sidebar">
+        <ul class="list-unstyled navbar-list">
+
+            @for(tempProductCategoty of productCategories ; track $index) {     
+            <li>
+                <a routerLink="/category/{{tempProductCategoty.id}}" routerLinkActive="active-link">
+                    {{tempProductCategoty.categoryName}}
+                </a>
+            </li>
+            }
+        </ul>
+    </nav>
+</div>
