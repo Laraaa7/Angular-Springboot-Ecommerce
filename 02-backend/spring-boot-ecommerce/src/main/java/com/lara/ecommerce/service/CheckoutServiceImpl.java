@@ -43,6 +43,17 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         // llenar customer con order
         Customer customer =  purchase.getCustomer();
+
+        // comprobar si hay un customer que exista
+        String theEmail = customer.getEmail();
+
+        Customer customerFromDB = customerRepository.findByEmail(theEmail);
+
+        if (customerFromDB != null) {
+            // lo hemos encontrado y lo asignamos correspondientemente
+            customer = customerFromDB;
+        }
+
         customer.add(order);
 
         // guardar en la bbdd
