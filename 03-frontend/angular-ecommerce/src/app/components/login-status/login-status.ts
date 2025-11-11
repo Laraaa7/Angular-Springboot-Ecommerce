@@ -11,8 +11,10 @@ import { RouterLink } from "@angular/router";
 })
 export class LoginStatus implements OnInit {
 
-  isAuthenticated = false;
-  userFullName = '';
+  isAuthenticated: boolean = false;
+  userFullName: string = '';
+
+  storage: Storage = sessionStorage;
 
   constructor(public auth: AuthService) {}
 
@@ -30,7 +32,13 @@ export class LoginStatus implements OnInit {
   getUserDetails() {
     this.auth.user$.subscribe(user => {
       if (user?.name) {
-        this.userFullName = user.name;
+        this.userFullName = user.name as string;
+
+        // obtener el email del usuario de la respuesta de autenticación
+        const theEmail = user.email;
+
+        // almacenar el email en el almacenamiento del navegador
+        this.storage.setItem('userEmail', JSON.stringify(theEmail));
       }
     });
   }

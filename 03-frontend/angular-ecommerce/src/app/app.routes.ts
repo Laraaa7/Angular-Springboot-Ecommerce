@@ -6,8 +6,12 @@ import { Checkout } from './components/checkout/checkout';
 import { Login } from './components/login/login';
 import { MembersPage } from './components/members-page/members-page';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { OrderHistoryComponent } from './components/order-history/order-history';
 
 export const routes: Routes = [
+  { path: 'order-history', component: OrderHistoryComponent, canActivate: [AuthGuard],
+    data: {loginOptions: { screen_hint: 'login' }}
+  },
   { path: 'members', component: MembersPage, canActivate: [AuthGuard],
     data: {loginOptions: { screen_hint: 'login' }}
   },

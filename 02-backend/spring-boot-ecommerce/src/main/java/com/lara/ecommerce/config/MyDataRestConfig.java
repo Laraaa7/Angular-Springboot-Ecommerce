@@ -1,9 +1,6 @@
 package com.lara.ecommerce.config;
 
-import com.lara.ecommerce.entity.Country;
-import com.lara.ecommerce.entity.Product;
-import com.lara.ecommerce.entity.ProductCategory;
-import com.lara.ecommerce.entity.State;
+import com.lara.ecommerce.entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +39,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
         disableHttpMethods(Country.class, config, theUnsupportedActions);
         disableHttpMethods(State.class, config, theUnsupportedActions);
-
+        disableHttpMethods(Order.class, config, theUnsupportedActions);
 
         // llamar un metodo interno
         exposeIds(config);
