@@ -1,0 +1,5 @@
+# Ignorar archivos sensibles en el backend
+src/main/resources/application.properties
+target/
+.idea/
+*.log
