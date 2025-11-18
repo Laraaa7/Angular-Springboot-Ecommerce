@@ -1,0 +1,18 @@
+.navbar-list li a {
+  display: block;
+  padding: 12px 5px;
+  margin-bottom: 5px;
+  color: #444;
+  border-radius: 8px;
+  transition: 0.25s ease;
+}
+
+.navbar-list li a:hover {
+  background: #f1f5f9;
+  color: #0da8e4;
+  padding: 10px;
+}
+
+.active-link {
+  background: #f1f5f9;
+}

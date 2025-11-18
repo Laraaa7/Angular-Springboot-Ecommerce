@@ -1,0 +1,154 @@
+/* Header */
+.order-header {
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-bottom: 2px solid #f1f3f5;
+}
+
+.order-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.order-header h2 i {
+    color: #0da8e4;
+    margin-right: 10px;
+}
+
+.order-subtitle {
+    color: #666;
+    font-size: 15px;
+}
+
+/* Card principal */
+.order-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    margin-top: 25px;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Encabezado tabla */
+.order-table-header {
+    display: grid;
+    grid-template-columns: 40% 15% 15% 30%;
+    font-weight: 700;
+    color: #333;
+    font-size: 15px;
+    padding-bottom: 12px;
+}
+
+.order-divider {
+    height: 2px;
+    background: #f1f3f5;
+    margin-bottom: 15px;
+}
+
+/* Filas */
+.order-row {
+    display: grid;
+    grid-template-columns: 40% 15% 15% 30%;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+    color: #444;
+    align-items: center;
+    transition: all 0.25s ease;
+    border-radius: 8px;
+    padding: 18px 12px;
+}
+
+.order-row:hover {
+    background: #f8f9fb;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+    border-radius: 8px;
+}
+
+.order-row:last-child {
+    border-bottom: none;
+}
+
+/* Campos */
+.price {
+    font-weight: 700;
+    color: #0da8e4;
+    margin-bottom: 15px;
+}
+
+.qty {
+    font-weight: 600;
+}
+
+.date {
+    color: #555;
+    font-size: 14px;
+}
+
+/* Orders vacíos */
+.empty-orders {
+    text-align: center;
+    padding: 60px 40px;
+    background: #fff;
+    border-radius: 14px;
+    margin-top: 40px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.empty-orders i {
+    font-size: 70px;
+    color: #e5e5e5;
+    margin-bottom: 20px;
+}
+
+.empty-orders h3 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.empty-orders p {
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+/* Botón Shop Now */
+.empty-orders a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #0da8e4, #205b8d);
+    color: #fff;
+    font-weight: 600;
+    padding: 14px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(13,168,228,0.3);
+    font-size: 16px;
+}
+
+/* Hover */
+.empty-orders a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13,168,228,0.4);
+}
+
+/* Icono dentro del botón más pequeño */
+.empty-orders a i {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #fff;
+}
+
+
+/* Animación*/
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

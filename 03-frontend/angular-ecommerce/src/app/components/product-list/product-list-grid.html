@@ -1,58 +1,80 @@
 <div class="main-content">
   <div class="section-content section-content-p30">
     <div class="container-fluid">
+      
+      <!-- Grid de productos -->
       <div class="row">
-
-    @for(tempProduct of products; track $index) {
-        <div class="col-md-3">
-     
+        @for(tempProduct of products; track $index) {
+          <div class="col-md-3">
             <div class="product-box">
-
-              <a routerLink="/products/{{ tempProduct.id}}">
-              <img src="{{tempProduct.imageUrl}}" class="img-responsive">
+              
+              <!-- Imagen del producto -->
+              <a routerLink="/products/{{ tempProduct.id }}" class="product-image-wrapper">
+                <div class="image-container">
+                  <img src="{{ tempProduct.imageUrl }}" 
+                       class="img-responsive" 
+                       alt="{{ tempProduct.name }}">
+                  <div class="image-overlay">
+                    <span class="view-details">View details</span>
+                  </div>
+                </div>
               </a>
 
-              <a routerLink="/products/{{ tempProduct.id}}">
-              <h1>{{tempProduct.name}}</h1>
+              <!-- Información del producto -->
+              <a routerLink="/products/{{ tempProduct.id }}">
+                <h1>{{ tempProduct.name }}</h1>
               </a>
               
-              <div class="price">{{tempProduct.unitPrice | currency:'EUR'}}</div>
-              <button (click)="addToCart(tempProduct)" class="btn btn-primary btn-sm">Add to cart</button>
+              <div class="price">{{ tempProduct.unitPrice | currency:'EUR' }}</div>
+              
+              <button (click)="addToCart(tempProduct)" class="btn btn-primary btn-sm">
+                Add to cart
+              </button>
             </div>
-        </div>
+          </div>
         }
 
-        <!-- si los productos estan vacios mostrar mensaje -->
-         @if(products.length == 0) {  
-         <div class="alert alert-warning col-md-12" role="alert">
-            No products found.
-         </div>
-          }
+        <!-- Mensaje si no hay productos -->
+        @if(products.length == 0) {  
+          <div class="col-md-12">
+            <div class="empty-products">
+              <i class="fa fa-inbox"></i>
+              <h3>No products found</h3>
+              <p>We couldn't find any products matching your search.</p>
+              <a routerLink="/products">
+                <i class="fa fa-shopping-bag"></i> Browse All Products
+              </a>
+            </div>
+          </div>
+        }
       </div>
 
-      <!-- inicio footer -->
+      <!-- Paginación -->
       <div class="footer-pagination">
         <div class="row">
-          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <div class="result-info">
+              Showing {{ (thePageNumber - 1) * thePageSize + 1 }} - 
+              {{ (thePageNumber * thePageSize) > theTotalElements ? theTotalElements : (thePageNumber * thePageSize) }} 
+              of {{ theTotalElements }} products
+            </div>
+          </div>
 
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-9" style="padding-left: 30%;">
-
                 <ngb-pagination [(page)]="thePageNumber"
                                 [pageSize]="thePageSize"
                                 [collectionSize]="theTotalElements"
                                 [maxSize]="5"
                                 [boundaryLinks]="true"
                                 (pageChange)="listProducts()">
-
                 </ngb-pagination>
               </div>
 
               <div class="col-md-3 mt-2" style="text-align: right;">
                 <span class="mr-2">Page Size </span>
-
-                <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
+                <select #myPageSelect class="styled-select" (change)="updatePageSize(myPageSelect.value)">
                   <option>2</option>
                   <option selected="true">5</option>
                   <option>10</option>
@@ -60,15 +82,10 @@
                   <option>50</option>
                 </select>
               </div>
-
             </div>
           </div>
-
         </div>
       </div>
-
-
-      <!-- final footer -->
 
     </div>
   </div>

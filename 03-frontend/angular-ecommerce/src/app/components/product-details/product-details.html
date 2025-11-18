@@ -1,18 +1,65 @@
 <div class="detail-section">
     <div class="container-fluid">
 
-        <img src="{{ product?.imageUrl }}" class="detail-img">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-section">
+            <a routerLink="/products" class="breadcrumb-link">
+                <i class="fa fa-arrow-left"></i> Volver a productos
+            </a>
+        </div>
 
-        <h3>{{ product?.name }}</h3>
-        <div class="price">{{ product?.unitPrice | currency:'EUR' }}</div>
-        <button (click)="addToCart()" class="btn btn-primary btn-sm">Add to cart</button>
+        <div class="row">
+            <!-- Columna de la imagen -->
+            <div class="col-md-6">
+                <div class="product-image-detail">
+                    <div class="image-zoom-wrapper">
+                        <img src="{{ product?.imageUrl }}" 
+                             alt="{{ product?.name }}"
+                             class="detail-img">
+                    </div>
+                </div>
+            </div>
 
-        <hr>
-        <h4>Description</h4>
-        <p>{{ product?.description }}</p>
+            <!-- Columna de información -->
+            <div class="col-md-6">
+                <div class="product-info-detail">
+                    
+                    <!-- Título del producto -->
+                    <h3 class="product-title">{{ product?.name }}</h3>
+                    
+                    <!-- Precio destacado -->
+                    <div class="price-section">
+                        <span class="price">{{ product?.unitPrice | currency:'EUR' }}</span>
+                        <span class="price-label">Taxes included</span>
+                    </div>
 
-        <a routerLink="/products" class="mt-5">Back to Product List</a>
+                    <!-- Botón de añadir al carrito -->
+                    <div class="action-section">
+                        <button (click)="addToCart()" class="btn btn-primary btn-add-cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            Add to cart
+                        </button>
+                    </div>
+
+                    <!-- Características rápidas -->
+                    <div class="quick-features">
+                        <div class="feature-item">
+                            <i class="fa fa-truck"></i>
+                            <span>Free Shipping</span>
+                        </div>
+                    </div>
+
+                    <hr class="detail-divider">
+
+                    <!-- Descripción -->
+                    <div class="description-section">
+                        <h4 class="section-title">Description</h4>
+                        <p class="product-description">{{ product?.description }}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
-

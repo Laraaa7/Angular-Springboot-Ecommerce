@@ -1,4 +1,4 @@
-# Ignorar node_modules (ya está por defecto en la plantilla de Angular)
+# Ignorar node_modules
 node_modules/
 
 # Ignorar archivos generados por Angular
@@ -7,8 +7,7 @@ node_modules/
 /.angular/
 
 # Ignorar archivos sensibles como claves privadas
-src/environments/environment.ts
-src/environments/environment.prod.ts
+/src/environments/
 
 # Ignorar archivos de configuración y build
 node_modules/

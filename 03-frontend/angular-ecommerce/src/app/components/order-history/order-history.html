@@ -1,39 +1,47 @@
 <div class="main-content">
     <div class="section-content section-content-p30">
         <div class="container-fluid">
-            <h3>Your Orders</h3>
+
+            <!-- HEADER -->
+            <div class="order-header">
+                <h2><i class="fa fa-clock"></i> Order History</h2>
+                <p class="order-subtitle">A summary of your past purchases</p>
+            </div>
 
             @if (orderHistoryList.length > 0) {
-             <div>
-                <table class="table table-bordered">
-                    <tr>
-                        <th width="20%">Order Tracking Number</th>
-                        <th width="10%">Total Price</th>
-                        <th width="10%">Total Quantity</th>
-                        <th width="10%">Date</th>
-                    </tr>
+
+                <div class="order-card">
+
+                    <div class="order-table-header">
+                        <div>ORDER TRACKING NUMBER</div>
+                        <div>TOTAL PRICE</div>
+                        <div>QUANTITY</div>
+                        <div>DATE</div>
+                    </div>
+
+                    <div class="order-divider"></div>
 
                     @for (tempOrderHistory of orderHistoryList; track $index) {
-                        <tr>
-                            <td>{{ tempOrderHistory.orderTrackingNumber }}</td>
-                            <td>{{ tempOrderHistory.totalPrice | currency:'EUR' }}</td>
-                            <td>{{ tempOrderHistory.totalQuantity }}</td>
-                            <td>{{ tempOrderHistory.dateCreated | date:'medium' }}</td>
-                        </tr>
-                        }
-                </table>
-            </div>
-            }
-
-            <!-- si el historial esta vacio mostrar mensaje -->
-            @if (orderHistoryList.length == 0) {
-                <div class="alert alert-warning col-md-12" role="alert">
-                    No orders found.
+                        <div class="order-row">
+                            <div class="tracking">{{ tempOrderHistory.orderTrackingNumber }}</div>
+                            <div class="price">{{ tempOrderHistory.totalPrice | currency:'EUR' }}</div>
+                            <div class="qty">{{ tempOrderHistory.totalQuantity }}</div>
+                            <div class="date">{{ tempOrderHistory.dateCreated | date:'medium' }}</div>
+                        </div>
+                    }
                 </div>
             }
 
+            @if (orderHistoryList.length == 0) {
+                <div class="empty-orders">
+                    <i class="fa fa-folder-open"></i>
+                    <h3>No orders found</h3>
+                    <p>Your purchase history will appear here.</p>
+                    <a routerLink="/products">
+                        <i class="fa fa-shopping-bag"></i> Shop Now
+                    </a>
+                </div>
+            }
         </div>
-
     </div>
-
 </div>

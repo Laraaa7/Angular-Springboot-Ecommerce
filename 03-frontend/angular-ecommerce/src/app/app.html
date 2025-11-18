@@ -3,12 +3,14 @@
   <!-- MENU SIDEBAR-->
   <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
-      <a routerLink="/products">
+      <a routerLink="/products" class="logo-link">
         <img src="/images/logo.png" alt="luv2shop" class="img-responsive">
       </a>
     </div>
     
-    <app-product-category-menu></app-product-category-menu>
+    <div class="menu-content">
+      <app-product-category-menu></app-product-category-menu>
+    </div>
 
   </aside>
   <!-- END MENU SIDEBAR-->
@@ -16,21 +18,32 @@
   <!-- PAGE CONTAINER-->
   <div class="page-container">
     <!-- HEADER DESKTOP-->
-    <header class="header-desktop">
+    <header class="header-desktop header-enhanced">
       <div class="section-content section-content-p30">
         <div class="container-fluid">
           <div class="header-wrap">
 
-            <app-search></app-search>
+            <div class="header-search-wrapper">
+              <app-search></app-search>
+            </div>
 
-            <app-login-status></app-login-status>
+            <div class="header-actions">
+              <div class="header-action-item">
+                <app-login-status></app-login-status>
+              </div>
 
-            <app-cart-status></app-cart-status>
+              <div class="header-action-item cart-highlight">
+                <app-cart-status></app-cart-status>
+              </div>
+            </div>
 
           </div>
           <div class="account-wrap"></div>
         </div>
       </div>
+
+      <div class="decoration-wave"></div>
+   
     </header>
     <!-- END HEADER DESKTOP-->
 
@@ -41,11 +54,61 @@
   </div>
 </div>
 
-<!-- END PAGE CONTAINER-->
-<footer>
-  <ul>
-    <li><a href="#">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
-    <li><a href="#">Help</a></li>
-  </ul>
+<!-- FOOTER-->
+<footer class="footer">
+  <div class="footer-content">
+    
+    <div class="footer-main">
+      <div class="footer-logo-section">
+        <img src="/images/logo.png" alt="luv2shop" class="footer-logo">
+        <p class="footer-tagline">Your go-to online shop</p>
+      </div>
+
+      <nav class="footer-nav">
+        <ul>
+          <li>
+            <a href="#">
+              <i class="fa fa-info-circle"></i>
+              <span>About Us</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-envelope"></i>
+              <span>Contact Us</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-question-circle"></i>
+              <span>Help</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    <div class="footer-social">
+      <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 LaraShop. All rights reserved.</p>
+      <div class="footer-badges">
+        <span class="badge-item">
+          <i class="fa fa-lock"></i> Secure Payment
+        </span>
+        <span class="badge-item">
+          <i class="fa fa-truck"></i> Fast Shipping
+        </span>
+        <span class="badge-item">
+          <i class="fa fa-shield"></i> Protected Purchase
+        </span>
+      </div>
+    </div>
+  </div>
 </footer>

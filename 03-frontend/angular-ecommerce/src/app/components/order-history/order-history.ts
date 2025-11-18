@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { OrderHistoryService } from '../../services/order-history.service';
 import { OrderHistory } from '../../common/order-history';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-order-history',
-  imports: [CurrencyPipe, DatePipe],
+  imports: [CurrencyPipe, DatePipe, RouterLink],
   templateUrl: './order-history.html',
   styleUrl: './order-history.css',
 })

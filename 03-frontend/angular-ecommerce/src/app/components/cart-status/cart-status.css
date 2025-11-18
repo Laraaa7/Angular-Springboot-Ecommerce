@@ -1,0 +1,8 @@
+
+.cart-area .total:hover {
+    background: #05143f;
+}
+
+.cart-area i:hover {
+    color: #05143f;
+}

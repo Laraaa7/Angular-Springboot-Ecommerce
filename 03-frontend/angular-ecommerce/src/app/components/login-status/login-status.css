@@ -1,14 +1,16 @@
-    .security-btn{
-        position:relative;
-        right:10px;
-        min-width:85px;
-        color:#fff;
-        border:10px solid #205b8d;
-        -webkit-border-radius:3px;
-        -moz-border-radius:3px;
-        border-radius:20px;
-        background:#205b8d
-    }
+.security-btn {
+    position:relative;
+    right:10px;
+    min-width:85px;
+    color:#fff;
+    padding:10px 15px;
+    background:#205b8d;
+    border-radius:20px;
+}
+
+.security-btn:hover {
+    background:#05143f;
+}
 
     .login-status-header{
     display:-webkit-box;
@@ -16,7 +18,7 @@
     display:-moz-box;
     display:-ms-flexbox;
     display:flex;
-    gap: 5px; 
+    gap: 5px;
 }
 
 .login-status-user-info{
@@ -29,5 +31,6 @@
     -webkit-transition:all .5s ease;
     -o-transition:all .5s ease;
     -moz-transition:all .5s ease;
-    transition:all .5s ease
+    transition:all .5s eases;
+    color: white;
 }

@@ -2,348 +2,411 @@
     <div class="section-content section-content-p30">
         <div class="container-fluid">
 
+        <!-- Main title -->
+        <div class="checkout-header">
+            <h2><i class="fa fa-shopping-cart"></i> Checkout</h2>
+            <p class="checkout-subtitle">Almost done! Follow these steps to complete your order</p>
+        </div>
+
             <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
 
-                <!-- formulario cliente -->
-                <div formGroupName="customer" class="form-area">
-                    <h3>Customer</h3>
+                <div class="row">
+                    <!-- Main form column -->
+                    <div class="col-lg-8">
 
-                    <div class="row">
-                        <div class="col-md-2"> <label>First Name</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <input formControlName="firstName" type="text">
+                        <!-- paso 1: información del cliente -->
+                        <div formGroupName="customer" class="form-area modern-card">
+                            <div class="step-header">
+                                <span class="step-number">1</span>
+                                <h3>Customer Information</h3>
+                            </div>
 
-                                @if (firstName?.invalid && (firstName?.dirty || firstName?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (firstName?.errors?.['required'] || firstName?.errors?.['notOnlyWhiteSpace']) {
-                                    <div>First Name is required</div>
-                                    }
-                                    @if (firstName?.errors?.['minlength']) {
-                                    <div>First Name must be at least 2 characters long</div>
-                                    }
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-space modern-input">
+                                        <label>First Name <span class="required">*</span></label>
+                                        <input formControlName="firstName" type="text" placeholder="Ex: John">
+
+                                        @if (firstName?.invalid && (firstName?.dirty || firstName?.touched)) {
+                                        <div class="error-message">
+                                            @if (firstName?.errors?.['required'] ||
+                                            firstName?.errors?.['notOnlyWhiteSpace']) {
+                                            <i class="fa fa-exclamation-circle"></i> First Name is required
+                                            }
+                                            @if (firstName?.errors?.['minlength']) {
+                                            <i class="fa fa-exclamation-circle"></i> Minimum 2 characters
+                                            }
+                                        </div>
+                                        }
+                                    </div>
                                 </div>
-                                }
+
+                                <div class="col-md-6">
+                                    <div class="input-space modern-input">
+                                        <label>Last Name <span class="required">*</span></label>
+                                        <input formControlName="lastName" type="text" placeholder="Ex: Doe">
+
+                                        @if (lastName?.invalid && (lastName?.dirty || lastName?.touched)) {
+                                        <div class="error-message">
+                                            @if (lastName?.errors?.['required'] ||
+                                            lastName?.errors?.['notOnlyWhiteSpace']) {
+                                            <i class="fa fa-exclamation-circle"></i> Last Name is required
+                                            }
+                                            @if (lastName?.errors?.['minlength']) {
+                                            <i class="fa fa-exclamation-circle"></i> Minimum 2 characters
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-space modern-input">
+                                        <label>Email <span class="required">*</span></label>
+                                        <input formControlName="email" type="text" placeholder="example@email.com">
+
+                                        @if (email?.invalid && (email?.dirty || email?.touched)) {
+                                        <div class="error-message">
+                                            @if (email?.errors?.['required']) {
+                                            <i class="fa fa-exclamation-circle"></i> Email is required
+                                            }
+                                            @if (email?.errors?.['pattern']) {
+                                            <i class="fa fa-exclamation-circle"></i> Invalid email format
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- paso 2: dirección de envío -->
+                        <div formGroupName="shippingAddress" class="form-area modern-card">
+                            <div class="step-header">
+                                <span class="step-number">2</span>
+                                <h3>Shipping Address</h3>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-space modern-input">
+                                        <label>Country <span class="required">*</span></label>
+                                        <select formControlName="country" (change)="getStates('shippingAddress')">
+                                            @for (country of countries; track $index;) {
+                                            <option [ngValue]="country">{{ country.name }}</option>
+                                            }
+                                        </select>
+
+                                        @if (shippingAddressCountry?.invalid && (shippingAddressCountry?.dirty ||
+                                        shippingAddressCountry?.touched)) {
+                                        <div class="error-message">
+                                            @if (shippingAddressCountry?.errors?.['required']) {
+                                            <i class="fa fa-exclamation-circle"></i> Country is required
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-space modern-input">
+                                        <label>Street and Number <span class="required">*</span></label>
+                                        <input formControlName="street" type="text" placeholder="Main St, 123">
+
+                                        @if (shippingAddressStreet?.invalid && (shippingAddressStreet?.dirty ||
+                                        shippingAddressStreet?.touched)) {
+                                        <div class="error-message">
+                                            @if (shippingAddressStreet?.errors?.['required'] ||
+                                            shippingAddressStreet?.errors?.['notOnlyWhiteSpace']) {
+                                            <i class="fa fa-exclamation-circle"></i> Street is required
+                                            }
+                                            @if (shippingAddressStreet?.errors?.['minlength']) {
+                                            <i class="fa fa-exclamation-circle"></i> Minimum 2 characters
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-space modern-input">
+                                        <label>City <span class="required">*</span></label>
+                                        <input formControlName="city" type="text" placeholder="Madrid">
+
+                                        @if (shippingAddressCity?.invalid && (shippingAddressCity?.dirty ||
+                                        shippingAddressCity?.touched)) {
+                                        <div class="error-message">
+                                            @if (shippingAddressCity?.errors?.['required'] ||
+                                            shippingAddressCity?.errors?.['notOnlyWhiteSpace']) {
+                                            <i class="fa fa-exclamation-circle"></i> City is required
+                                            }
+                                            @if (shippingAddressCity?.errors?.['minlength']) {
+                                            <i class="fa fa-exclamation-circle"></i> Minimum 2 characters
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-space modern-input">
+                                        <label>State <span class="required">*</span></label>
+                                        <select formControlName="state">
+                                            @for (state of shippingAddressStates; track $index;) {
+                                            <option [ngValue]="state">{{ state.name }}</option>
+                                            }
+                                        </select>
+
+                                        @if (shippingAddressState?.invalid && (shippingAddressState?.dirty ||
+                                        shippingAddressState?.touched)) {
+                                        <div class="error-message">
+                                            @if (shippingAddressState?.errors?.['required']) {
+                                            <i class="fa fa-exclamation-circle"></i> State is required
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-space modern-input">
+                                        <label>Zip Code <span class="required">*</span></label>
+                                        <input formControlName="zipCode" type="text" placeholder="28001">
+
+                                        @if (shippingAddressZipCode?.invalid && (shippingAddressZipCode?.dirty ||
+                                        shippingAddressZipCode?.touched)) {
+                                        <div class="error-message">
+                                            @if (shippingAddressZipCode?.errors?.['required'] ||
+                                            shippingAddressZipCode?.errors?.['notOnlyWhiteSpace']) {
+                                            <i class="fa fa-exclamation-circle"></i> Zip Code is required
+                                            }
+                                            @if (shippingAddressZipCode?.errors?.['minlength']) {
+                                            <i class="fa fa-exclamation-circle"></i> Minimum 2 characters
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Checkbox para copiar shipping address a billing address -->
+                        <div class="checkbox-area">
+                            <label class="modern-checkbox">
+                                <input type="checkbox" (change)="copyShippingAddressToBillingAddress($event)">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label">Billing Address same as Shipping Address</span>
+                            </label>
+                        </div>
+
+                        <!-- paso 3: billing address -->
+                        <div formGroupName="billingAddress" class="form-area modern-card">
+                            <div class="step-header">
+                                <span class="step-number">3</span>
+                                <h3>Billing Address</h3>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-space modern-input">
+                                        <label>Country <span class="required">*</span></label>
+                                        <select formControlName="country" (change)="getStates('billingAddress')">
+                                            @for (country of countries; track $index;) {
+                                            <option [ngValue]="country">{{ country.name }}</option>
+                                            }
+                                        </select>
+
+                                        @if (billingAddressCountry?.invalid && (billingAddressCountry?.dirty ||
+                                        billingAddressCountry?.touched)) {
+                                        <div class="error-message">
+                                            @if (billingAddressCountry?.errors?.['required']) {
+                                            <i class="fa fa-exclamation-circle"></i> Country is required
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-space modern-input">
+                                        <label>Street and Number <span class="required">*</span></label>
+                                        <input formControlName="street" type="text" placeholder="Main St, 123">
+
+                                        @if (billingAddressStreet?.invalid && (billingAddressStreet?.dirty ||
+                                        billingAddressStreet?.touched)) {
+                                        <div class="error-message">
+                                            @if (billingAddressStreet?.errors?.['required'] ||
+                                            billingAddressStreet?.errors?.['notOnlyWhiteSpace']) {
+                                            <i class="fa fa-exclamation-circle"></i> Street is required
+                                            }
+                                            @if (billingAddressStreet?.errors?.['minlength']) {
+                                            <i class="fa fa-exclamation-circle"></i> Minimum 2 characters
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-space modern-input">
+                                        <label>City <span class="required">*</span></label>
+                                        <input formControlName="city" type="text" placeholder="Madrid">
+
+                                        @if (billingAddressCity?.invalid && (billingAddressCity?.dirty ||
+                                        billingAddressCity?.touched)) {
+                                        <div class="error-message">
+                                            @if (billingAddressCity?.errors?.['required'] ||
+                                            billingAddressCity?.errors?.['notOnlyWhiteSpace']) {
+                                            <i class="fa fa-exclamation-circle"></i> City is required
+                                            }
+                                            @if (billingAddressCity?.errors?.['minlength']) {
+                                            <i class="fa fa-exclamation-circle"></i> Minimum 2 characters
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-space modern-input">
+                                        <label>State <span class="required">*</span></label>
+                                        <select formControlName="state">
+                                            @for (state of billingAddressStates; track $index;) {
+                                            <option [ngValue]="state">{{ state.name }}</option>
+                                            }
+                                        </select>
+
+                                        @if (billingAddressState?.invalid && (billingAddressState?.dirty ||
+                                        billingAddressState?.touched)) {
+                                        <div class="error-message">
+                                            @if (billingAddressState?.errors?.['required']) {
+                                            <i class="fa fa-exclamation-circle"></i> State is required
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-space modern-input">
+                                        <label>Zip Code <span class="required">*</span></label>
+                                        <input formControlName="zipCode" type="text" placeholder="28001">
+
+                                        @if (billingAddressZipCode?.invalid && (billingAddressZipCode?.dirty ||
+                                        billingAddressZipCode?.touched)) {
+                                        <div class="error-message">
+                                            @if (billingAddressZipCode?.errors?.['required'] ||
+                                            billingAddressZipCode?.errors?.['notOnlyWhiteSpace']) {
+                                            <i class="fa fa-exclamation-circle"></i> Zip Code is required
+                                            }
+                                            @if (billingAddressZipCode?.errors?.['minlength']) {
+                                            <i class="fa fa-exclamation-circle"></i> Minimum 2 characters
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- paso 4: metodo de pago con stripe -->
+                        <div formGroupName="creditCard" class="form-area modern-card">
+                            <div class="step-header">
+                                <span class="step-number">4</span>
+                                <h3>Payment Method</h3>
+                            </div>
+
+                            <div class="payment-info">
+                                <i class="fa fa-lock"></i>
+                                <span>Secure payment with SSL encryption</span>
+                            </div>
+
+                            <div id="card-element" class="stripe-card-element"></div>
+                             
+                            <!-- usado para mostrar errores -->
+                           <div id="card-errors" class="displayError.textContent!=='': 'alert alert-danger mt-1"></div>
+
+                            <div class="payment-badges">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Detalles del pedido -->
+                    <div class="col-lg-4">
+                        <div class="order-summary-sticky">
+                            <div class="order-summary modern-card">
+                                <h3>Order Summary</h3>
+
+                                <div class="summary-item">
+                                    <span class="summary-label">
+                                        <i class="fa fa-shopping-bag"></i> Total Products:
+                                    </span>
+                                    <span class="summary-value">{{ totalQuantity }}</span>
+                                </div>
+
+                                <div class="summary-item">
+                                    <span class="summary-label">
+                                        <i class="fa fa-tags"></i> Subtotal:
+                                    </span>
+                                    <span class="summary-value">{{ totalPrice | currency:'EUR' }}</span>
+                                </div>
+
+                                <div class="summary-item shipping">
+                                    <span class="summary-label">
+                                        <i class="fa fa-truck"></i> Shipping:
+                                    </span>
+                                    <span class="summary-value free">FREE</span>
+                                </div>
+
+                                <div class="summary-divider"></div>
+
+                                <div class="summary-total">
+                                    <span class="total-label">Total to Pay:</span>
+                                    <span class="total-value">{{ totalPrice | currency:'EUR' }}</span>
+                                </div>
+
+                                <!-- Botón submit -->
+                                <button type="submit" class="btn-purchase" [disabled]="isDisabled">
+                                    <i class="fa fa-lock"></i>
+                                    Complete Purchase
+                                </button>
+
+                                <div class="security-badges">
+                                    <div class="badge-item">
+                                        <i class="fa fa-shield"></i>
+                                        <span>Secure Purchase</span>
+                                    </div>
+                                    <div class="badge-item">
+                                        <i class="fa fa-refresh"></i>
+                                        <span>30-Day Returns</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>Last Name</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <input formControlName="lastName" type="text">
-
-                                @if (lastName?.invalid && (lastName?.dirty || lastName?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (lastName?.errors?.['required'] || lastName?.errors?.['notOnlyWhiteSpace']) {
-                                    <div>Last Name is required</div>
-                                    }
-                                    @if (lastName?.errors?.['minlength']) {
-                                    <div>Last Name must be at least 2 characters long</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>Email</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <input formControlName="email" type="text">
-
-                                @if (email?.invalid && (email?.dirty || email?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (email?.errors?.['required']) {
-                                    <div>Email is required</div>
-                                    }
-                                    @if (email?.errors?.['pattern']) {
-                                    <div>Email must be a valid email address format</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Direccion de envio -->
-                <div formGroupName="shippingAddress" class="form-area">
-                    <h3>Shipping Address</h3>
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>Country</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <select formControlName="country" (change)="getStates('shippingAddress')">
-
-                                    @for (country of countries; track $index;) {
-                                    <option [ngValue]="country">{{ country.name }}</option>
-                                    }
-                                </select>
-
-                                @if (shippingAddressCountry?.invalid && (shippingAddressCountry?.dirty ||
-                                shippingAddressCountry?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (shippingAddressCountry?.errors?.['required']) {
-                                    <div>Country is required</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>Street</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <input formControlName="street" type="text">
-
-                                @if (shippingAddressStreet?.invalid && (shippingAddressStreet?.dirty ||
-                                shippingAddressStreet?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (shippingAddressStreet?.errors?.['required'] ||
-                                    shippingAddressStreet?.errors?.['notOnlyWhiteSpace']) {
-                                    <div>Street is required</div>
-                                    }
-                                    @if (shippingAddressStreet?.errors?.['minlength']) {
-                                    <div>Street must be at least 2 characters long</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>City</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <input formControlName="city" type="text">
-
-                                @if (shippingAddressCity?.invalid && (shippingAddressCity?.dirty ||
-                                shippingAddressCity?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (shippingAddressCity?.errors?.['required'] ||
-                                    shippingAddressCity?.errors?.['notOnlyWhiteSpace']) {
-                                    <div>City is required</div>
-                                    }
-                                    @if (shippingAddressCity?.errors?.['minlength']) {
-                                    <div>City must be at least 2 characters long</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>State</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <select formControlName="state">
-
-                                    @for (state of shippingAddressStates; track $index;) {
-                                    <option [ngValue]="state">{{ state.name }}</option>
-                                    }
-                                </select>
-
-                                @if (shippingAddressState?.invalid && (shippingAddressState?.dirty ||
-                                shippingAddressState?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (shippingAddressState?.errors?.['required']) {
-                                    <div>State is required</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>Zip Code</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <input formControlName="zipCode" type="text">
-
-                                @if (shippingAddressZipCode?.invalid && (shippingAddressZipCode?.dirty ||
-                                shippingAddressZipCode?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (shippingAddressZipCode?.errors?.['required'] ||
-                                    shippingAddressZipCode?.errors?.['notOnlyWhiteSpace']) {
-                                    <div>Zip Code is required</div>
-                                    }
-                                    @if (shippingAddressZipCode?.errors?.['minlength']) {
-                                    <div>Zip Code must be at least 2 characters long</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Añadir checkbox para copiar la direccion de envio a la de facturacion -->
-                <div class="input-space">
-                    <label class="au-checkbox">
-                        <input type="checkbox" (change)="copyShippingAddressToBillingAddress($event)">
-                        <span class="au-checkmark"></span>Billing Address same as Shipping Address
-                    </label>
-                </div>
-
-                <!-- Direccion de facturacion -->
-
-                <div formGroupName="billingAddress" class="form-area">
-                    <h3>Billing Address</h3>
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>Country</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <select formControlName="country" (change)="getStates('billingAddress')">
-                                    @for (country of countries; track $index;) {
-                                    <option [ngValue]="country">{{ country.name }}</option>
-                                    }
-                                </select>
-
-                                @if (billingAddressCountry?.invalid && (billingAddressCountry?.dirty ||
-                                billingAddressCountry?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (billingAddressCountry?.errors?.['required']) {
-                                    <div>Country is required</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>Street</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <input formControlName="street" type="text">
-
-                                @if (billingAddressStreet?.invalid && (billingAddressStreet?.dirty ||
-                                billingAddressStreet?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (billingAddressStreet?.errors?.['required'] ||
-                                    billingAddressStreet?.errors?.['notOnlyWhiteSpace']) {
-                                    <div>Street is required</div>
-                                    }
-                                    @if (billingAddressStreet?.errors?.['minlength']) {
-                                    <div>Street must be at least 2 characters long</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>City</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <input formControlName="city" type="text">
-
-                                @if (billingAddressCity?.invalid && (billingAddressCity?.dirty ||
-                                billingAddressCity?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (billingAddressCity?.errors?.['required'] ||
-                                    billingAddressCity?.errors?.['notOnlyWhiteSpace']) {
-                                    <div>City is required</div>
-                                    }
-                                    @if (billingAddressCity?.errors?.['minlength']) {
-                                    <div>City must be at least 2 characters long</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>State</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <select formControlName="state">
-
-                                    @for (state of billingAddressStates; track $index;) {
-                                    <option [ngValue]="state">{{ state.name }}</option>
-                                    }
-                                </select>
-
-                                @if (billingAddressState?.invalid && (billingAddressState?.dirty ||
-                                billingAddressState?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (billingAddressState?.errors?.['required']) {
-                                    <div>State is required</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2"> <label>Zip Code</label></div>
-                        <div class="col-md-9">
-                            <div class="input-space">
-                                <input formControlName="zipCode" type="text">
-
-                                @if (billingAddressZipCode?.invalid && (billingAddressZipCode?.dirty ||
-                                billingAddressZipCode?.touched)) {
-                                <div class="alert alert-danger">
-                                    @if (billingAddressZipCode?.errors?.['required'] ||
-                                    billingAddressZipCode?.errors?.['notOnlyWhiteSpace']) {
-                                    <div>Zip Code is required</div>
-                                    }
-                                    @if (billingAddressZipCode?.errors?.['minlength']) {
-                                    <div>Zip Code must be at least 2 characters long</div>
-                                    }
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Elementos Stripe para sección Tarjeta de crédito -->
-                 <div formGroupName="creditCard" class="form-area">
-
-                    <h3>Credit or Debit Card</h3>
-
-                    <div id="card-element">
-                        <!-- elemento stripe -->
-
-                    </div>
-
-                    <!-- usado para mostrar errores -->
-                    <div id="card-errors" class="displayError.textContent!=='': 'alert alert-danger mt-1"></div>
-
-                 </div>
-     
-                <!-- Detalles del pedido -->
-                <div class="form-area">
-                    <h3>Review your Order</h3>
-
-                    <p>Total Quantity: {{ totalQuantity }}</p>
-                    <p>Shipping: FREE</p>
-                    <p>Total Price: {{ totalPrice | currency:'EUR' }}</p>
-
-                </div>
-
-                <!-- Botón submit -->
-                <div class="text-center">
-                    <button type="submit" class="btn btn-info" [disabled]="isDisabled">Purchase</button>
                 </div>
 
             </form>
 
         </div>
-
     </div>
+</div>

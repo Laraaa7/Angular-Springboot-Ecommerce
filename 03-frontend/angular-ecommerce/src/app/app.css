@@ -1,0 +1,236 @@
+
+/* ===================================
+   HEADER MEJORADO
+   =================================== */
+
+.header-enhanced {
+  background: linear-gradient(135deg, #0da8e4 0%, #205b8d 100%);
+  box-shadow: 0 4px 20px rgba(13, 168, 228, 0.3);
+  overflow: hidden;
+}
+
+/* Acciones del header */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.decoration-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: wave 3s linear infinite;
+}
+
+@keyframes wave {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+/* ===================================
+   FOOTER
+   =================================== */
+
+.footer {
+  background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.footer-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px 40px 20px;
+}
+
+/* Sección principal del footer */
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Logo del footer */
+.footer-logo-section {
+  text-align: center;
+}
+
+.footer-logo {
+  max-width: 150px;
+  filter: brightness(0) invert(1);
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+}
+
+.footer-tagline {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Navegación del footer - Sobrescribe footer original */
+.footer .footer-nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer .footer-nav ul li {
+  display: inline-block;
+  padding: 0;
+}
+
+.footer .footer-nav li a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.footer .footer-nav li a:hover {
+  color: #0da8e4;
+  background: rgba(13, 168, 228, 0.1);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.footer .footer-nav li a i {
+  font-size: 16px;
+}
+
+/* Redes sociales */
+.footer-social {
+  display: flex;
+  gap: 15px;
+}
+
+.social-link {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background: #0da8e4;
+  transform: translateY(-3px) rotate(5deg);
+  box-shadow: 0 5px 15px rgba(13, 168, 228, 0.4);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 30px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* Badges del footer */
+.footer-badges {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 12px;
+  border-radius: 15px;
+}
+
+.badge-item i {
+  color: #0da8e4;
+}
+
+/* Responsive del footer */
+@media (max-width: 991px) {
+  .footer-main {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer .footer-nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .footer .footer-nav li a {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-badges {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-content {
+    padding: 50px 20px 20px;
+  }
+
+  .footer .footer-nav ul {
+    gap: 10px;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+
+}
