@@ -161,7 +161,7 @@ docker compose up --build
 ### 📦 Prerequisites
 
 - Node.js & npm
-- Java JDK 11+
+- Java JDK 17+ (tested with Java 25)
 - MySQL Server
 - IntelliJ IDEA (recommended for backend)
 - Visual Studio Code (recommended for frontend)
