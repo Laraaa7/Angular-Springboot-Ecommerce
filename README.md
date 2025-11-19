@@ -13,7 +13,7 @@
 
 **A complete full-stack e-commerce application with product catalog, shopping cart, checkout, payments, and authentication.**
 
-[Features](#-features) • [Tech Stack](#-tech-stack) • [Quick Start](#-quick-start) • [Screenshots](#-screenshots)
+[Features](#-features) • [Tech Stack](#-tech-stack) • [Quick Start](#-quick-start-with-docker) • [Screenshots](#-screenshots)
 
 </div>
 
@@ -386,7 +386,7 @@ spring.datasource.password=your_password
 
 ## 👨‍💻 Author
 
-**Lara**
+**Lara Sono de la Viuda**
 
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Laraaa7)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/larasonodelaviuda)
