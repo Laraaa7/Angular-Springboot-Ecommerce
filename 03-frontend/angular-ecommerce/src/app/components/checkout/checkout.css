@@ -44,8 +44,8 @@
     left: auto;
     padding: 0;
     margin: 0;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 700;
     color: #333;
 }
 
@@ -294,7 +294,7 @@
 
 .total-label {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
     color: #333;
 }
 
